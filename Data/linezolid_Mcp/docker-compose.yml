@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  linezolid-mcp-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: linezolid-mcp-service:latest
+    container_name: linezolid-mcp-service
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

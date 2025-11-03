@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  gnn-mcp-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gnn-mcp-service:latest
+    container_name: gnn-mcp-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./checkpoint:/app/checkpoint
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - MODEL_PATH=checkpoint/model.pt
+      - IN_FEATS=211
+      - H_FEATS=211
+      - OUT_FEATS=3
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
