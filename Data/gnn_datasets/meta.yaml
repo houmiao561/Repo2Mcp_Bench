@@ -1,0 +1,7 @@
+dataset_name: "minimal_gnn_test"
+node_data:
+  - file_name: nodes/app.csv
+    ntype: app
+edge:
+  - file_name: edges/edges_1.csv
+    etype: [app, edges_1, app]
