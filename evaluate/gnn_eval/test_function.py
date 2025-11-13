@@ -32,7 +32,6 @@ def test_function ():
         print()
 
     # 4. 从 SSE 流读取响应（/sse）
-    sse = sseclient.SSEClient("http://localhost:8000/sse")
-    print(sse)
+    # sse = sseclient.SSEClient("http://localhost:8000/sse")
 
 

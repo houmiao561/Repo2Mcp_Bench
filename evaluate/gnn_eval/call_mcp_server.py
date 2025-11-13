@@ -39,7 +39,6 @@ def get_model_info():
         print("❌ get_model_info 失败结果: ", e)
         print()
 
-
 def predict_from_path(dataset_path: str):
     """调用 predict_from_path 工具"""
     payload = {
@@ -62,3 +61,27 @@ def predict_from_path(dataset_path: str):
     except Exception as e:
         print("❌ predict_from_path 失败结果:", e)
         print()
+
+def predict_from_dataset(file_base64: str):
+    """调用 predict_from_dataset 工具"""
+    payload = {
+        "method": "tools/call",
+        "params": {
+            "name": "predict_from_dataset",
+            "arguments": {
+                "file_base64": ""
+            },
+            "_meta": {
+                "progressToken": 3
+            }
+        }
+    }
+    try:
+        response = requests.post(f"{BASE_URL}/messages/", json=payload)
+        print("✅ predict_from_dataset 成功结果:", response.json())
+        print()
+    except Exception as e:
+        print("❌ predict_from_dataset 失败结果:", e)
+        print()
+
+
