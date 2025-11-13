@@ -9,9 +9,11 @@ def health_check():
     """调用健康检查接口"""
     try:
         response = requests.get(f"{BASE_URL}/health")
-        print("✅ Health check response:", response.json())
+        print("✅ Health check 成功结果:", response.json())
+        print()
     except Exception as e:
-        print("❌ Health check failed:", e)
+        print("❌ Health check 失败结果:", e)
+        print()
 
 def get_model_info():
     """调用 get_model_info 工具"""
@@ -31,9 +33,11 @@ def get_model_info():
 
     try:
         response = requests.post(f"{BASE_URL}/messages", json=payload, headers=headers)
-        print("✅ get_model_info response:", response)
+        print("✅ get_model_info 成功结果:", response.json())
+        print()
     except Exception as e:
-        print("❌ get_model_info failed: 这里没有搞定session_id，", e)
+        print("❌ get_model_info 失败结果: ", e)
+        print()
 
 
 def predict_from_path(dataset_path: str):
@@ -53,6 +57,8 @@ def predict_from_path(dataset_path: str):
     }
     try:
         response = requests.post(f"{BASE_URL}/messages/", json=payload)
-        print("✅ predict_from_path response:", response.json())
+        print("✅ predict_from_path 成功结果:", response.json())
+        print()
     except Exception as e:
-        print("❌ predict_from_path failed:", e)
+        print("❌ predict_from_path 失败结果:", e)
+        print()

@@ -10,12 +10,14 @@ import evaluate.call_mcp_server
 import evaluate.test_function
 
 def main() :
-    # print("🧪 Testing MCP Server at localhost:8000\n")
-    # repo2mcpMock.mock.convert_repo_to_mcp()
-    # evaluate.call_mcp_server.health_check()
-    # evaluate.call_mcp_server.get_model_info()
-    # evaluate.call_mcp_server.predict_from_path("/app/data/sample.zip")
-    # print()
+    print("🧪 Testing MCP Server at localhost:8000\n")
+    repo2mcpMock.mock.convert_repo_to_mcp()
+    evaluate.call_mcp_server.health_check()
+    evaluate.call_mcp_server.get_model_info()
+    evaluate.call_mcp_server.predict_from_path("/app/data/sample.zip")
+    print()
+    print("接口连通性测试完毕，开始测试功能性:")
+    print()
     evaluate.test_function.test_function()
 
 if __name__ == "__main__" :
