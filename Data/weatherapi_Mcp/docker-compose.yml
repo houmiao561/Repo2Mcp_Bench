@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  weatherapi-mcp-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: weatherapi-mcp-service:latest
+    container_name: weatherapi-mcp-service
+    ports:
+      - "8000:8000"
+    environment:
+      - WEATHER_API_KEY=${WEATHER_API_KEY:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/sse').close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
